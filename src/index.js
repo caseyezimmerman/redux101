@@ -10,5 +10,19 @@ import { createStore } from 'redux';
 // they talk through 'connect' but the Provider component makes that happen
 import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// import the main reducer (root reducer) so that we can hand it to the store
+import reducers from './reducers/index';
+
+// make a store for redux to use
+const theStore = createStore(reducers)
+
+
+// provider is the component that makes connect work (inside the containers)
+// it takes a prop of store, which is the reduc store
+// the redux store was made by createStore and giving it to the root reducer
+ReactDOM.render(
+	<Provider store={theStore}>
+		<App />
+	</Provider>,
+	document.getElementById('root'));
 
